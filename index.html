@@ -51,8 +51,8 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #0d0d12;
-            color: #e4e4e7;
+            background: #000000;
+            color: #ffffff;
             overflow: hidden;
             height: 100vh;
             display: flex;
@@ -68,11 +68,17 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(88, 80, 236, 0.05) 1.5px, transparent 1.5px),
-                linear-gradient(90deg, rgba(88, 80, 236, 0.05) 1.5px, transparent 1.5px);
+                linear-gradient(rgba(64, 224, 208, 0.08) 1.5px, transparent 1.5px),
+                linear-gradient(90deg, rgba(64, 224, 208, 0.08) 1.5px, transparent 1.5px);
             background-size: 60px 60px;
             mask-image: radial-gradient(ellipse 80% 50% at 50% 50%, black 40%, transparent 100%);
             -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 50%, black 40%, transparent 100%);
+            animation: gridPulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes gridPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
         }
 
         .floating-orbs {
@@ -85,46 +91,46 @@
         .orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.15;
+            filter: blur(90px);
+            opacity: 0.25;
             animation: float 20s infinite ease-in-out;
         }
 
         .orb1 {
-            width: 500px;
-            height: 500px;
-            background: #5850ec;
-            top: -10%;
-            left: -10%;
+            width: 550px;
+            height: 550px;
+            background: #40e0d0;
+            top: -15%;
+            left: -15%;
             animation-delay: 0s;
-            animation-duration: 25s;
+            animation-duration: 18s;
         }
 
         .orb2 {
-            width: 400px;
-            height: 400px;
-            background: #7c3aed;
-            bottom: -10%;
-            right: -10%;
-            animation-delay: 5s;
-            animation-duration: 30s;
+            width: 450px;
+            height: 450px;
+            background: #071A18;
+            bottom: -15%;
+            right: -15%;
+            animation-delay: 3s;
+            animation-duration: 22s;
         }
 
         .orb3 {
-            width: 300px;
-            height: 300px;
-            background: #2563eb;
-            top: 50%;
-            right: 10%;
-            animation-delay: 10s;
-            animation-duration: 35s;
+            width: 350px;
+            height: 350px;
+            background: #20b2aa;
+            top: 40%;
+            right: 5%;
+            animation-delay: 6s;
+            animation-duration: 20s;
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(30px, -50px) scale(1.1); }
-            50% { transform: translate(-20px, -80px) scale(0.9); }
-            75% { transform: translate(40px, -30px) scale(1.05); }
+            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            25% { transform: translate(60px, -80px) scale(1.2) rotate(90deg); }
+            50% { transform: translate(-40px, -120px) scale(0.85) rotate(180deg); }
+            75% { transform: translate(70px, -50px) scale(1.15) rotate(270deg); }
         }
 
         .container {
@@ -132,12 +138,12 @@
             z-index: 10;
             text-align: center;
             padding: 2rem;
-            animation: containerFloat 8s ease-in-out 2s infinite;
+            animation: containerFloat 5s ease-in-out 1s infinite;
         }
 
         @keyframes containerFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.02); }
         }
 
         h1 {
@@ -146,34 +152,52 @@
             letter-spacing: -0.04em;
             line-height: 0.9;
             margin-bottom: 2rem;
-            background: linear-gradient(180deg, #ffffff 0%, #a5b4fc 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #40e0d0 50%, #20b2aa 100%);
+            background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: titleReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: titleReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards, gradientShift 6s ease infinite 1.5s;
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px) scale(0.9);
         }
 
         @keyframes titleReveal {
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .subtitle {
             font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-            color: #71717a;
+            color: #40e0d0;
             font-weight: 400;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+            animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards, subtitlePulse 3s ease-in-out 2s infinite;
             opacity: 0;
+            text-shadow: 0 0 20px rgba(64, 224, 208, 0.3);
         }
 
         @keyframes fadeIn {
             to { opacity: 1; }
+        }
+        
+        @keyframes subtitlePulse {
+            0%, 100% { 
+                opacity: 1; 
+                text-shadow: 0 0 20px rgba(64, 224, 208, 0.3);
+            }
+            50% { 
+                opacity: 0.7; 
+                text-shadow: 0 0 30px rgba(64, 224, 208, 0.6);
+            }
         }
 
         @media (max-width: 768px) {
@@ -184,18 +208,6 @@
     </style>
 </head>
 <body>
-    <header>
-      <h1>Reda Arrous</h1>
-      <p>ML Engineer & CS Student</p>
-    </header>
-
-<section id="about">
-  <p>
-    I'm Reda Arrous, a computer science student and aspiring machine learning engineer.
-    I focus on building practical AI and deep learning projects while strengthening my core CS fundamentals.
-    This website is a space where I share my work, experiments, and learning journey.
-  </p>
-</section>
     <div class="floating-orbs">
         <div class="orb orb1"></div>
         <div class="orb orb2"></div>
