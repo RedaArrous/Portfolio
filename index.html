@@ -74,6 +74,7 @@
             mask-image: radial-gradient(ellipse 80% 50% at 50% 50%, black 40%, transparent 100%);
             -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 50%, black 40%, transparent 100%);
             animation: gridPulse 4s ease-in-out infinite;
+            will-change: opacity;
         }
         
         @keyframes gridPulse {
@@ -94,6 +95,7 @@
             filter: blur(90px);
             opacity: 0.25;
             animation: float 20s infinite ease-in-out;
+            will-change: transform;
         }
 
         .orb1 {
@@ -139,6 +141,7 @@
             text-align: center;
             padding: 2rem;
             animation: containerFloat 5s ease-in-out 1s infinite;
+            will-change: transform;
         }
 
         @keyframes containerFloat {
@@ -158,8 +161,10 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             animation: titleReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards, gradientShift 6s ease infinite 1.5s;
+            animation-fill-mode: forwards;
             opacity: 0;
             transform: translateY(40px) scale(0.9);
+            will-change: opacity, transform;
         }
 
         @keyframes titleReveal {
@@ -181,8 +186,10 @@
             letter-spacing: 0.15em;
             text-transform: uppercase;
             animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards, subtitlePulse 3s ease-in-out 2s infinite;
+            animation-fill-mode: forwards;
             opacity: 0;
             text-shadow: 0 0 20px rgba(64, 224, 208, 0.3);
+            will-change: opacity;
         }
 
         @keyframes fadeIn {
@@ -195,7 +202,7 @@
                 text-shadow: 0 0 20px rgba(64, 224, 208, 0.3);
             }
             50% { 
-                opacity: 0.7; 
+                opacity: 0.85; 
                 text-shadow: 0 0 30px rgba(64, 224, 208, 0.6);
             }
         }
@@ -203,6 +210,56 @@
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
+                animation: none;
+                transform: none;
+            }
+            
+            .orb {
+                filter: blur(60px);
+                animation-duration: 25s;
+            }
+            
+            .orb1 {
+                width: 400px;
+                height: 400px;
+            }
+            
+            .orb2 {
+                width: 350px;
+                height: 350px;
+            }
+            
+            .orb3 {
+                width: 300px;
+                height: 300px;
+            }
+            
+            @keyframes float {
+                0%, 100% { transform: translate(0, 0) scale(1); }
+                50% { transform: translate(30px, -40px) scale(1.1); }
+            }
+            
+            .bg-grid {
+                background-size: 40px 40px;
+                animation: none;
+                opacity: 0.8;
+            }
+            
+            h1 {
+                animation: titleReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+                will-change: auto;
+            }
+            
+            .subtitle {
+                animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+                will-change: auto;
+            }
+            
+            @keyframes titleReveal {
+                to {
+                    opacity: 1;
+                    transform: none;
+                }
             }
         }
     </style>
